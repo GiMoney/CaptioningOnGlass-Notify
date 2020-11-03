@@ -8,6 +8,7 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import edu.gatech.cog.notify.common.GLASS_SOUND_TAP
 import edu.gatech.cog.notify.common.models.GlassNotification
@@ -39,7 +40,35 @@ class NotifyDisplayFragment : Fragment(R.layout.fragment_notify_display) {
                 }
 
                 requireActivity().runOnUiThread {
-                    binding.tvContent.text = it.text
+                    when (it.text) {
+                        "SmokeAlarm" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.smoke))
+                        }
+                        "FireAlarm" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.fire))
+                        }
+                        "Ringing" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ringing))
+                        }
+                        "Bark" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.bark))
+                        }
+                        "Baby" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.baby))
+                        }
+                        "Door" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.door))
+                        }
+                        "Person" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.person))
+                        }
+                        "Exclamation" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.exclamation))
+                        }
+                        "Speech" -> {
+                            binding.ivContent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.speech))
+                        }
+                    }
                 }
             }
         }

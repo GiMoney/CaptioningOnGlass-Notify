@@ -47,6 +47,80 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
                 etMessage.setText("")
             }
+
+            SmokeAlarm.setOnClickListener {
+                val notifyText = "SmokeAlarm"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                Log.v(TAG, "isconnect: ${connectedThread.bluetoothSocket?.isConnected}")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            FireAlarm.setOnClickListener {
+                val notifyText = "FireAlarm"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Ringing.setOnClickListener {
+                val notifyText = "Ringing"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Bark.setOnClickListener {
+                val notifyText = "Bark"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Baby.setOnClickListener {
+                val notifyText = "Baby"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Door.setOnClickListener {
+                val notifyText = "Door"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Person.setOnClickListener {
+                val notifyText = "Person"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Exclamation.setOnClickListener {
+                val notifyText = "Exclamation"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
+            Speech.setOnClickListener {
+                val notifyText = "Speech"
+                val isVibrate = toggleVibrate.isChecked
+                Log.v(TAG, "$notifyText, $isVibrate")
+                connectedThread.write(GlassNotification(notifyText, isVibrate))
+
+                etMessage.setText("")
+            }
         }
     }
 
@@ -58,7 +132,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     inner class ConnectedThread : Thread() {
         private val TAG = "ConnectedThread"
         private var isRunning = AtomicBoolean(true)
-        private var bluetoothSocket: BluetoothSocket? = null
+        var bluetoothSocket: BluetoothSocket? = null
 
         override fun run() {
             val buffer = ByteArray(1024)
@@ -100,6 +174,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         fun write(echoNotification: GlassNotification) {
+
+            Log.v(TAG, bluetoothSocket?.isConnected.toString())
             val objectOutputStream = ObjectOutputStream(bluetoothSocket?.outputStream)
             objectOutputStream.writeObject(echoNotification)
         }
